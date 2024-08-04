@@ -23,11 +23,11 @@ class Fibonacci(ABC):
 
 class SimpleRecursiveFibonacci(Fibonacci):
 
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, True
 
     def fib(self, n0, n1):
         if time() - self.start_time >= self.max_seconds:
@@ -40,11 +40,11 @@ class SimpleRecursiveFibonacci(Fibonacci):
 
 class RecursiveFibonacciWithCatch(Fibonacci):
 
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, True
 
     def fib(self, n0, n1):
         if time() - self.start_time >= self.max_seconds:
@@ -60,14 +60,14 @@ class RecursiveFibonacciWithCatch(Fibonacci):
 
 class RecursiveFibonacciWithRestart(Fibonacci):
 
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         n0 = 0
         n1 = 1
         while time() - self.start_time <= self.max_seconds:
             n0, n1 = self.fib(n0, n1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(n1)), finish_time
+        return "{:.2E}".format(Decimal(n1)), finish_time, True
 
     def fib(self, n0, n1):
         try:
@@ -80,11 +80,11 @@ class RecursiveFibonacciWithRestart(Fibonacci):
 
 
 class IterativeFibonacci(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, True
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:
@@ -96,11 +96,11 @@ class IterativeFibonacci(Fibonacci):
 
 
 class IterativeFibonacciWith2S(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, False
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:
@@ -112,11 +112,11 @@ class IterativeFibonacciWith2S(Fibonacci):
 
 
 class IterativeFibonacciWith2LU(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, True
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:
@@ -129,11 +129,11 @@ class IterativeFibonacciWith2LU(Fibonacci):
 
 
 class IterativeFibonacciWith4LU(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, True
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:
@@ -147,11 +147,11 @@ class IterativeFibonacciWith4LU(Fibonacci):
 
 
 class IterativeFibonacciWith5S(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(0, 1)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, False
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:
@@ -164,13 +164,13 @@ class IterativeFibonacciWith5S(Fibonacci):
 
 class MatrixFibonacci(Fibonacci):
 
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = array([[1, 1], [1, 0]])
         while time() - self.start_time < self.max_seconds:
             result = matmul(result, result)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result[0, 0].item())), finish_time
+        return "{:.2E}".format(Decimal(result[0, 0].item())), finish_time, False
 
     def get_name(self) -> str:
         return "Matrix Fibonacci"
@@ -178,11 +178,11 @@ class MatrixFibonacci(Fibonacci):
 
 #  from: https://www.nayuki.io/page/fast-fibonacci-algorithms
 class FastDoublingFibonacci(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(1, 2)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, False
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:
@@ -194,11 +194,11 @@ class FastDoublingFibonacci(Fibonacci):
 
 
 class FastDoublingKaratsubaFibonacci(Fibonacci):
-    def start(self) -> (int, time):
+    def start(self) -> (str, float):
         self.start_time = time()
         result = self.fib(1, 2)
         finish_time = time() - self.start_time
-        return "{:.2E}".format(Decimal(result)), finish_time
+        return "{:.2E}".format(Decimal(result)), finish_time, False
 
     def fib(self, n0, n1):
         while time() - self.start_time < self.max_seconds:

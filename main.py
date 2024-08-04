@@ -32,8 +32,8 @@ def get_participants(max_seconds):
 
 
 def sort_results(a, b):
-    (part_a, result_a, time_a) = a
-    (part_b, result_b, time_b) = b
+    (part_a, result_a, time_a, gen_a) = a
+    (part_b, result_b, time_b, gen_b) = b
     if result_a == "FAILED":
         return 1
     if result_b == "FAILED":
@@ -49,7 +49,7 @@ def sort_results(a, b):
 
 def format_results(results):
     return tabulate(sorted([(k,) + v for k, v in results.items()], key=cmp_to_key(sort_results)),
-                    headers=['Participant', 'Result', 'Total Time'], tablefmt='pipe')
+                    headers=['Participant', 'Result', 'Total Time', 'Generated All?'], tablefmt='pipe')
 
 
 def save_to_readme(pretty_results):

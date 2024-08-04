@@ -10,6 +10,6 @@ class Tester:
                 participant_result = participant.start()
             except Exception as e:
                 print("Participant '{}' failed due to {}".format(participant.get_name(), e))
-                participant_result = ("FAILED", 0)
+                participant_result = ("FAILED", 0, None)
             self.results[participant.get_name()] = participant_result
         return self.results
