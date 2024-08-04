@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from time import time
 from decimal import Decimal
+from functools import reduce
 
 
 class Fibonacci(ABC):
@@ -125,6 +126,7 @@ class IterativeFibonacciWith2LU(Fibonacci):
     def get_name(self) -> str:
         return "Iterative Fibonacci with 2-Loop Unroll"
 
+
 class IterativeFibonacciWith4LU(Fibonacci):
     def start(self) -> (int, time):
         self.start_time = time()
@@ -141,3 +143,19 @@ class IterativeFibonacciWith4LU(Fibonacci):
 
     def get_name(self) -> str:
         return "Iterative Fibonacci with 4-Loop Unroll"
+
+
+class IterativeFibonacciWith5S(Fibonacci):
+    def start(self) -> (int, time):
+        self.start_time = time()
+        result = self.fib(0, 1)
+        finish_time = time() - self.start_time
+        return "{:.2E}".format(Decimal(result)), finish_time
+
+    def fib(self, n0, n1):
+        while time() - self.start_time < self.max_seconds:
+            (n0, n1) = 2*n0 + 5*n1, 4*n0 + 8*n1
+        return n1
+
+    def get_name(self) -> str:
+        return "Iterative Fibonacci with 5-step"
