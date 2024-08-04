@@ -13,6 +13,7 @@ def get_participants(max_seconds):
     iterative_fibonacci_with_2lu = IterativeFibonacciWith2LU(max_seconds)
     iterative_fibonacci_with_4lu = IterativeFibonacciWith4LU(max_seconds)
     iterative_fibonacci_with_5s = IterativeFibonacciWith5S(max_seconds)
+    matrix_fibonacci = MatrixFibonacci(max_seconds)
     return [
         recursive_fibonacci,
         iterative_fibonacci,
@@ -22,6 +23,7 @@ def get_participants(max_seconds):
         iterative_fibonacci_with_2lu,
         iterative_fibonacci_with_4lu,
         iterative_fibonacci_with_5s,
+        matrix_fibonacci,
     ]
 
 
