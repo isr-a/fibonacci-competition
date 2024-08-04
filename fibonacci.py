@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from time import time
 from decimal import Decimal
 from numpy import array, matmul
+from karatsuba import multiply
 
 
 class Fibonacci(ABC):
@@ -173,3 +174,36 @@ class MatrixFibonacci(Fibonacci):
 
     def get_name(self) -> str:
         return "Matrix Fibonacci"
+
+
+#  from: https://www.nayuki.io/page/fast-fibonacci-algorithms
+class FastDoublingFibonacci(Fibonacci):
+    def start(self) -> (int, time):
+        self.start_time = time()
+        result = self.fib(1, 2)
+        finish_time = time() - self.start_time
+        return "{:.2E}".format(Decimal(result)), finish_time
+
+    def fib(self, n0, n1):
+        while time() - self.start_time < self.max_seconds:
+            (n0, n1) = n0 * (2 * n1 - n0), n1 ** 2 + n0 ** 2
+        return n1
+
+    def get_name(self) -> str:
+        return "Fast Doubling Fibonacci"
+
+
+class FastDoublingKaratsubaFibonacci(Fibonacci):
+    def start(self) -> (int, time):
+        self.start_time = time()
+        result = self.fib(1, 2)
+        finish_time = time() - self.start_time
+        return "{:.2E}".format(Decimal(result)), finish_time
+
+    def fib(self, n0, n1):
+        while time() - self.start_time < self.max_seconds:
+            (n0, n1) = multiply(n0, (2 * n1 - n0)), multiply(n1, n1) + multiply(n0, n0)
+        return n1
+
+    def get_name(self) -> str:
+        return "Fast Doubling Fibonacci w/ Karatsuba"
