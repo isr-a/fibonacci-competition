@@ -10,14 +10,16 @@ def get_participants(max_seconds):
     recursive_fibonacci_with_catch = RecursiveFibonacciWithCatch(max_seconds)
     recursive_fibonacci_with_restart = RecursiveFibonacciWithRestart(max_seconds)
     iterative_fibonacci_with_2s = IterativeFibonacciWith2S(max_seconds)
-    iterative_fibonacci_with_lu = IterativeFibonacciWithLU(max_seconds)
+    iterative_fibonacci_with_2lu = IterativeFibonacciWith2LU(max_seconds)
+    iterative_fibonacci_with_4lu = IterativeFibonacciWith4LU(max_seconds)
     return [
         recursive_fibonacci,
         iterative_fibonacci,
         recursive_fibonacci_with_catch,
         recursive_fibonacci_with_restart,
         iterative_fibonacci_with_2s,
-        iterative_fibonacci_with_lu,
+        iterative_fibonacci_with_2lu,
+        iterative_fibonacci_with_4lu,
     ]
 
 

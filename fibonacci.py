@@ -109,7 +109,7 @@ class IterativeFibonacciWith2S(Fibonacci):
         return "Iterative Fibonacci with 2-step"
 
 
-class IterativeFibonacciWithLU(Fibonacci):
+class IterativeFibonacciWith2LU(Fibonacci):
     def start(self) -> (int, time):
         self.start_time = time()
         result = self.fib(0, 1)
@@ -123,4 +123,21 @@ class IterativeFibonacciWithLU(Fibonacci):
         return n1
 
     def get_name(self) -> str:
-        return "Iterative Fibonacci with Loop Unroll"
+        return "Iterative Fibonacci with 2-Loop Unroll"
+
+class IterativeFibonacciWith4LU(Fibonacci):
+    def start(self) -> (int, time):
+        self.start_time = time()
+        result = self.fib(0, 1)
+        finish_time = time() - self.start_time
+        return "{:.2E}".format(Decimal(result)), finish_time
+
+    def fib(self, n0, n1):
+        while time() - self.start_time < self.max_seconds:
+            (tmp0, tmp1) = n1, n0 + n1
+            (tmp2, tmp3) = tmp1, tmp0 + tmp1
+            (n0, n1) = tmp3, tmp2 + tmp3
+        return n1
+
+    def get_name(self) -> str:
+        return "Iterative Fibonacci with 4-Loop Unroll"
